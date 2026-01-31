@@ -1,0 +1,70 @@
+# Buntime Helm Chart - Default Values
+
+replicaCount: 1
+
+image:
+  repository: ghcr.io/zommehq/buntime
+  tag: latest
+  pullPolicy: Always
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: NodePort
+  port: 8000
+
+# Ingress (Kubernetes)
+ingress:
+  enabled: false
+  className: ""  # nginx, traefik, alb, etc
+  host: ""
+  path: "/"  # Use "/b" for path-based routing (auto-adds rewrite)
+  annotations: {}
+  tls:
+    enabled: false
+    secretName: ""  # auto-generated if empty
+
+# Route (OpenShift/OKD)
+route:
+  enabled: false
+  host: ""
+  tls:
+    enabled: true
+    termination: edge  # edge, passthrough, reencrypt
+
+# Buntime configuration
+buntime:
+  # Homepage redirect or app-shell config (optional)
+  # String: redirect path (e.g., "/cpanel")
+  # Empty: no homepage redirect
+  homepage: ""
+  # LibSQL database connection
+  # URL format: http://host:port or http://host:port/namespace (for multi-tenant servers)
+  libsqlAuthToken: ""  # optional: auth token if libSQL server requires it
+  libsqlUrl: "http://libsql:8080"
+  logLevel: "info"
+  # Plugin directories: core (.plugins from image) + custom (plugins PVC)
+  pluginDirs: "/data/.plugins,/data/plugins"
+  poolSize: 100
+  port: 8000
+  # Root API key (required for first access, use Secret in production)
+  # Generate with: openssl rand -hex 32
+  rootKey: ""
+  # Worker directories: core (.apps from image) + custom (apps PVC)
+  workerDirs: "/data/.apps,/data/apps"
+
+# Persistent storage
+persistence:
+  # Custom plugins (core plugins are in /data/.plugins from image)
+  plugins:
+    enabled: true
+    size: 5Gi
+    accessMode: ReadWriteOnce
+    storageClass: ""  # Use default if empty
+  # User applications
+  apps:
+    enabled: true
+    size: 10Gi
+    accessMode: ReadWriteOnce
+    storageClass: ""  # Use default if empty
