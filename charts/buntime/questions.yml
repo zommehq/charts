@@ -132,13 +132,22 @@ questions:
     group: Deployments
     description: Folder patterns to exclude, comma-separated (e.g., .cache, cli, runtime)
     default: .cache, cli, runtime
-  - variable: plugins.gateway.appShell
-    label: App Shell Path
+  - variable: plugins.gateway.shellDir
+    label: Shell Directory
     type: string
     group: Gateway
     description: |
       Absolute path to the micro-frontend shell application.
       When configured, all browser navigations are served through this shell.
+  - variable: plugins.gateway.shellExcludes
+    label: Shell Excludes
+    type: string
+    group: Gateway
+    description: |
+      Basenames that bypass the shell (comma-separated).
+      Requests to these paths go directly to their workers instead of the shell.
+      Can also be set via GATEWAY_SHELL_EXCLUDES cookie for per-user overrides.
+    default: cpanel
   - variable: plugins.gateway.rateLimit.requests
     label: "Rate Limit: Max Requests"
     type: int

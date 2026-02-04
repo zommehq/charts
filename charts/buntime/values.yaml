@@ -53,7 +53,8 @@ plugins:
   deployments:
     excludes: .cache, cli, runtime
   gateway:
-    appShell: ""
+    shellDir: ""
+    shellExcludes: cpanel
     rateLimit:
       requests: 100
       window: 1m
