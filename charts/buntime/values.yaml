@@ -30,7 +30,7 @@ route:
     enabled: true
     termination: edge
 buntime:
-  apiPrefix: ""
+  apiPrefix: /_
   logLevel: info
   pluginDirs: /data/.plugins:/data/plugins
   poolSize: 100
