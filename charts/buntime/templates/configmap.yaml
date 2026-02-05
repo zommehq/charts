@@ -48,7 +48,7 @@ data:
   {{- end }}
 
   # Deployments plugin
-  DEPLOYMENTS_EXCLUDES: {{ .Values.plugins.deployments.excludes | default ".cache, cli, runtime" | quote }}
+  DEPLOYMENTS_EXCLUDES: {{ .Values.plugins.deployments.excludes | default ".cache, lost+found" | quote }}
 
   # Gateway plugin
   GATEWAY_SHELL_DIR: {{ .Values.plugins.gateway.shellDir | default "" | quote }}

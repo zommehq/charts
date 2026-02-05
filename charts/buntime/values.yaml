@@ -51,7 +51,7 @@ plugins:
     libsqlReplicas: []
     libsqlAuthToken: ""
   deployments:
-    excludes: .cache, cli, runtime
+    excludes: .cache, lost+found
   gateway:
     shellDir: ""
     shellExcludes: cpanel

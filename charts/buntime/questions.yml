@@ -130,8 +130,8 @@ questions:
     label: Exclude Patterns
     type: string
     group: Deployments
-    description: Folder patterns to exclude, comma-separated (e.g., .cache, cli, runtime)
-    default: .cache, cli, runtime
+    description: Folder patterns to exclude, comma-separated (e.g., .cache, lost+found)
+    default: .cache, lost+found
   - variable: plugins.gateway.shellDir
     label: Shell Directory
     type: string
